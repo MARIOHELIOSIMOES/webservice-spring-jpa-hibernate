@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Profile;
 import com.simoes.webspring.entities.Category;
 import com.simoes.webspring.entities.Order;
 import com.simoes.webspring.entities.OrderItem;
+import com.simoes.webspring.entities.Payment;
 import com.simoes.webspring.entities.Product;
 import com.simoes.webspring.entities.User;
 import com.simoes.webspring.entities.enums.OrderStatus;
-import com.simoes.webspring.entities.pk.OrderItemPK;
 import com.simoes.webspring.repositories.CategoryRepository;
 import com.simoes.webspring.repositories.OrderItemRepository;
 import com.simoes.webspring.repositories.OrderRepository;
@@ -86,5 +86,10 @@ public class TestConfig implements CommandLineRunner{
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 		
+		Payment pay1 = new Payment(null,Instant.parse("2019-06-20T21:53:07Z"), o1);
+		
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 	}
 }
